@@ -1,9 +1,7 @@
 require('dotenv').config()
-const customExpress = require('./config/custom-express')
-const conexao = require('./infraestrutura/conexao')
-const Tabelas = require('./infraestrutura/database/tabelas')
-
-const app = customExpress()
+const { GraphQLServer } = require('graphql-yoga');
+const conexao = require('./infraestrutura/conexao');
+const Tabelas = require('./infraestrutura/database/tabelas');
 
 conexao.connect(erro => {
   if (erro) {
@@ -13,8 +11,7 @@ conexao.connect(erro => {
   console.log('conectou no banco')
 
   Tabelas.init(conexao)
-})
+});
 
-app.listen(4000, () => {
-  console.log('Servidor rodando na porta 4000')
-})
+const servidor = new GraphQLServer({});
+servidor.start(()=>console.log('Servidor ouvindo'));
