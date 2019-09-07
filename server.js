@@ -13,5 +13,14 @@ conexao.connect(erro => {
   Tabelas.init(conexao)
 });
 
-const servidor = new GraphQLServer({});
-servidor.start(()=>console.log('Servidor ouvindo'));
+const resolvers = {
+  Query: {
+    status: () => "Servidor rodando"
+  }
+}
+
+const servidor = new GraphQLServer({
+  resolvers,
+  typeDefs: './schema.graphql'
+});
+servidor.start(() => console.log('Servidor ouvindo'));
