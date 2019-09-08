@@ -16,7 +16,8 @@ conexao.connect(erro => {
 const Clientes = new Operacoes('cliente');
 const resolvers = {
   Query: {
-    status: () => "Servidor rodando"
+    status: () => "Servidor rodando",
+    clientes: () => Clientes.lista()
   },
   Mutation: {
     adicionarCliente: (root, params) => 
