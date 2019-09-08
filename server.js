@@ -1,4 +1,4 @@
-require('dotenv').config()
+// require('dotenv').config()
 const { GraphQLServer } = require('graphql-yoga');
 const conexao = require('./infraestrutura/conexao');
 const Tabelas = require('./infraestrutura/database/tabelas');
@@ -16,6 +16,13 @@ conexao.connect(erro => {
 const resolvers = {
   Query: {
     status: () => "Servidor rodando"
+  },
+  Mutation: {
+    adicionarCliente: (root, params) => ({
+      id: 1,
+      nome: params.nome,
+      cpf: params.cpf
+    }) 
   }
 }
 
