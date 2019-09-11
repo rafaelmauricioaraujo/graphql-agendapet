@@ -12,4 +12,5 @@ type Query{
     status: String!
     olaMundo: String!
     clientes:  [Cliente!]!
+    cliente(id:ID!): Cliente!
 }
