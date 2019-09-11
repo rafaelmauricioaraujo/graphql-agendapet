@@ -1,8 +1,9 @@
 require('dotenv').config()
-const { GraphQLServer } = require('graphql-yoga');
+
 const conexao = require('./infraestrutura/conexao');
 const Tabelas = require('./infraestrutura/database/tabelas');
 const Operacoes = require('./infraestrutura/operations');
+const { GraphQLServer } = require('graphql-yoga');
 
 conexao.connect(erro => {
   if (erro) {
@@ -25,7 +26,11 @@ const resolvers = {
   },
   Mutation: {
     adicionarCliente: (root, params) =>
-      Clientes.adiciona(params)
+      Clientes.adiciona(params),
+    atualizarCliente: (root, params) =>
+      Clientes.atualiza(params),
+    deletarCliente: (root, { id }) => 
+      Clientes.deleta(id)
   }
 }
 
