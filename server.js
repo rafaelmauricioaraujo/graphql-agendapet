@@ -13,10 +13,13 @@ conexao.connect(erro => {
 
   Tabelas.init(conexao)
 });
+
 const Clientes = new Operacoes('cliente');
+
 const resolvers = {
   Query: {
     status: () => "Servidor rodando",
+    olaMundo: () => 'Olá mundo!',
     clientes: () => Clientes.lista()
   },
   Mutation: {
