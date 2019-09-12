@@ -37,7 +37,9 @@ const resolvers = {
     adicionarPet: (root, params) =>
      Pets.adiciona(params),
     atualizarPet: (root, params) =>
-     Pets.atualiza(params)
+     Pets.atualiza(params),
+    deletarPet: (root, { id }) =>
+     Pets.deleta(id)
   }
 }
 
