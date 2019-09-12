@@ -24,7 +24,8 @@ const resolvers = {
     olaMundo: () => 'Olá mundo!',
     clientes: () => Clientes.lista(),
     cliente: (root, { id }) => Clientes.buscaPorId(id),
-    pets: () => pets.lista()
+    pets: () => pets.lista(),
+    pets: (root, { id }) => Pets.buscaPorId()
   },
   Mutation: {
     adicionarCliente: (root, params) =>
